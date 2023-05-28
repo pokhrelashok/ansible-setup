@@ -7,12 +7,9 @@
   tags:
     - install
     - tlp
-# - name: Start and enable TLP
-#   become: true
-#   service:
-#     name: tlp
-#     state: started
-#     enabled: yes
-#   tags:
-#     - install
-#     - tlp
+- name: Enable and start TLP service
+  become: true
+  systemd:
+    name: tlp
+    state: started
+    enabled: yes

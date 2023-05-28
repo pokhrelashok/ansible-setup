@@ -46,8 +46,6 @@
     dest: "/tmp/Upwork.rpm"
     headers:
       User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36"
-  tags:
-    - upwork
 
 - name: Install Upwork
   become: true
@@ -55,8 +53,20 @@
   dnf:
     name: "/tmp/Upwork.rpm"
     state: present
-  tags:
-    - upwork
+
+- name: Download Docker RPM package
+  get_url:
+    url: "https://desktop.docker.com/linux/main/amd64/docker-desktop-4.19.0-x86_64.rpm?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-linux-amd64"
+    dest: "/tmp/Docker.rpm"
+    headers:
+      User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36"
+
+- name: Install Docker
+  become: true
+  validate_certs: no
+  dnf:
+    name: "/tmp/Docker.rpm"
+    state: present
 
 - name: Clean up temporary file
   become: true
