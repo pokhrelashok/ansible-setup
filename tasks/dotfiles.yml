@@ -1,0 +1,25 @@
+- name: Installing stow
+  dnf: name=stow
+  become: true
+  tags:
+    - install
+    - dotfiles
+    - stow
+
+- name: Cloning Dotfiles
+  ansible.builtin.git:
+    repo: "git@github.com:pokhrelashok/dotfiles.git"
+    accept_hostkey: yes
+    dest: "{{ lookup('env', 'HOME') }}/dotfiles"
+    version: main
+  tags:
+    - install
+    - dotfiles
+    - stow
+
+- name: Stow dotfiles
+  shell: cd {{ lookup('env', 'HOME') }}/dotfiles && chmod +x ./fedora && chmod +x ./install && ./fedora
+  tags:
+    - install
+    - dotfiles
+    - stow

@@ -1,0 +1,55 @@
+- name: Install Chrome
+  become: true
+  shell: flatpak install -y flathub com.google.Chrome
+  tags:
+    - install
+    - apps
+
+- name: Install Slack
+  become: true
+  shell: flatpak install -y flathub com.slack.Slack
+  tags:
+    - install
+    - apps
+
+- name: Install VS Code
+  become: true
+  shell: flatpak install -y flathub com.visualstudio.code
+  tags:
+    - install
+    - apps
+
+- name: Install DBeaver
+  become: true
+  shell: flatpak install -y flathub io.dbeaver.DBeaverCommunity
+  tags:
+    - install
+    - apps
+
+- name: Install VLC
+  become: true
+  shell: flatpak install -y flathub org.videolan.VLC
+  tags:
+    - install
+    - apps
+
+- name: Install Zoom
+  become: true
+  shell: flatpak install -y flathub us.zoom.Zoom
+  tags:
+    - install
+    - apps
+
+- name: Install Postman
+  become: true
+  shell: flatpak install -y flathub com.getpostman.Postman
+  tags:
+    - install
+    - apps
+
+- name: Install qBittorrent
+  become: true
+  shell: flatpak install -y flathub org.qbittorrent.qBittorrent
+  tags:
+    - install
+    - apps

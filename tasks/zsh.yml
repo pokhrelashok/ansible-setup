@@ -1,0 +1,62 @@
+- name: "Install Zsh"
+  become: true
+  dnf:
+    name: zsh
+    state: present
+  tags:
+    - install
+    - zsh
+- name: "Change default shell to Zsh"
+  become: true
+  shell: usermod --shell /usr/bin/zsh {{ ansible_user_id }}
+  tags:
+    - install
+    - zsh
+
+- name: Install Oh My Zsh
+  become: true
+  shell: >
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  args:
+    creates: ~/.oh-my-zsh
+  tags:
+    - install
+    - oh-my-zsh
+- name: Install zsh-syntax-highlighting plugin
+  git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+  tags:
+    - install
+    - zsh-plugins
+
+- name: Install zsh-autosuggestions plugin
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+  tags:
+    - install
+    - zsh-plugins
+
+- name: Clone Powerlevel10k repository
+  git:
+    repo: "https://github.com/romkatv/powerlevel10k.git"
+    dest: "~/.oh-my-zsh/custom/themes/powerlevel10k"
+    depth: 1
+  tags:
+    - install
+    - powerlevel10k
+# - name: Set ZSH_THEME to Powerlevel10k
+#   lineinfile:
+#     path: "~/.zshrc"
+#     line: 'ZSH_THEME="powerlevel10k/powerlevel10k"'
+#     state: present
+#   tags:
+#     - install
+#     - powerlevel10k
+
+# - name: Source the modified .zshrc file
+#   command: "source ~/.zshrc"
+#   tags:
+#     - install
+#     - powerlevel10k

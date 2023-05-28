@@ -1,0 +1,26 @@
+- name: Install System Packages 1
+  become: true
+  dnf:
+    # name: ["dnf-plugins-core", "git"]
+    # name: ["dnf-plugins-core", "curl", "git"]
+    name: ["git"]
+  tags:
+    - install
+    - neovim
+    - core
+# - name: Install System Packages 2
+#   become: true
+#   dnf:
+#     name: ["unzip", "unrar"]
+#   tags:
+#     - install
+#     - neovim
+#     - core
+
+# - name: Install System Packages 3
+#   become: true
+#   dnf:
+#     name: ["curl", "git", "neofetch", "htop", "python3-pip"]
+#   tags:
+#     - install
+#     - core

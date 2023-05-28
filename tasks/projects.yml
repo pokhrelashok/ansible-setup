@@ -1,0 +1,19 @@
+- name: IPO
+  ansible.builtin.git:
+    repo: "git@github.com:pokhrelashok/IPO.git"
+    accept_hostkey: yes
+    dest: "{{ projects }}/IPO"
+    version: main
+  tags:
+    - install
+    - projects
+
+- name: personal website
+  ansible.builtin.git:
+    repo: "git@github.com:pokhrelashok/pokhrelashok.github.io.git"
+    accept_hostkey: yes
+    dest: "{{ projects }}/pokhrelashok"
+    version: main
+  tags:
+    - install
+    - projects

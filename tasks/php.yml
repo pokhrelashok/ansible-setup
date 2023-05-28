@@ -1,0 +1,46 @@
+- name: "Install remi repo"
+  become: true
+  dnf:
+    name: https://rpms.remirepo.net/fedora/remi-release-38.rpm
+    state: present
+    disable_gpg_check: yes
+  tags:
+    - install
+    - php
+    - composer
+
+- name: "Enable Remi repository"
+  become: true
+  command: dnf config-manager --set-enabled remi
+  tags:
+    - install
+    - php
+    - composer
+
+- name: "Reset PHP"
+  become: true
+  command: dnf module reset php -y
+  tags:
+    - install
+    - php
+    - composer
+
+- name: "Install PHP"
+  become: true
+  command: dnf module -y install php:remi-8.2
+  tags:
+    - install
+    - php
+    - composer
+
+- name: "Install PHP deps"
+  become: true
+  command: dnf -y install php-cli php-fpm php-mysqlnd php-zip php-devel php-gd php-mcrypt php-mbstring php-curl php-xml php-pear php-bcmath php-json
+  tags:
+    - install
+    - php
+    - composer
+
+- name: Download Composer installer
+  become: true
+  shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

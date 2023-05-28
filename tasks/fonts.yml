@@ -1,0 +1,29 @@
+- name: Create fonts directory
+  file:
+    path: ~/.fonts
+    state: directory
+  tags:
+    - install
+    - fonts
+
+- name: Clone Cascadia Code PL
+  git:
+    repo: https://github.com/microsoft/cascadia-code.git
+    dest: ~/.fonts/cascadia-code
+  tags:
+    - install
+    - fonts
+
+- name: Clone Fira Code
+  git:
+    repo: https://github.com/tonsky/FiraCode.git
+    dest: ~/.fonts/fira-code
+  tags:
+    - install
+    - fonts
+
+- name: Update font cache
+  command: fc-cache -f -v
+  tags:
+    - install
+    - fonts

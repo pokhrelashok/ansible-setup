@@ -1,0 +1,25 @@
+- name: Download Upwork RPM package
+  get_url:
+    url: "https://upwork-usw2-desktopapp.upwork.com/binaries/v5_8_0_24_aef0dc8c37cf46a8/upwork-5.8.0.24-1fc24.x86_64.rpm"
+    dest: "/tmp/Upwork.rpm"
+    headers:
+      User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36"
+  tags:
+    - upwork
+
+- name: Install Upwork
+  become: true
+  validate_certs: no
+  dnf:
+    name: "/tmp/Upwork.rpm"
+    state: present
+  tags:
+    - upwork
+
+- name: Clean up temporary file
+  become: true
+  file:
+    path: "/tmp/Upwork.rpm"
+    state: absent
+  tags:
+    - upwork

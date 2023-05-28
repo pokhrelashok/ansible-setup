@@ -1,0 +1,20 @@
+- name: Install Flatpak
+  become: true
+  package:
+    name:
+      - flatpak
+    state: present
+  tags:
+    - flatpak
+
+- name: Add Flathub repository
+  become: true
+  shell: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  tags:
+    - flatpak
+
+- name: Update Flatpak
+  become: true
+  shell: flatpak update -y
+  tags:
+    - flatpak

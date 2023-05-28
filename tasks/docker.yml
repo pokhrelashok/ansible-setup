@@ -1,0 +1,40 @@
+- name: Remove docker
+  become: true
+  shell: dnf remove -y docker \
+    docker-client \
+    docker-client-latest \
+    docker-common \
+    docker-latest \
+    docker-latest-logrotate \
+    docker-logrotate \
+    docker-selinux \
+    docker-engine-selinux \
+    docker-engine
+
+- name: Add repo
+  become: true
+  shell: sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo -y
+
+- name: Install docker packages
+  become: true
+  shell: dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+
+- name: Enable and start Docker service
+  become: true
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Add the current user to the docker group
+  become: true
+  user:
+    name: "{{ ansible_user_id }}"
+    groups: docker
+    append: yes
+
+- name: Restart Docker service to apply user changes
+  become: true
+  systemd:
+    name: docker
+    state: restarted
