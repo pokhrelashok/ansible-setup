@@ -1,0 +1,96 @@
+- name: Change close window shortcut
+  become: true
+  command: >
+    gsettings set org.gnome.desktop.wm.keybindings close "['<Primary>q']"
+- name: Change switch windows shortcut
+  become: true
+  command: >
+    gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Primary>Tab']"
+- name: Change home folder shortcut
+  become: true
+  command: >
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.home "<Super>f"
+
+# google chrome
+- name: Create custom shortcut to launch Google Chrome
+  become: true
+  command: >
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+
+- name: Set custom shortcut key and command
+  become: true
+  command: >
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Launch Google Chrome'
+
+- name: Set custom shortcut key binding
+  become: true
+  command: >
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>c'
+
+- name: Set custom shortcut command
+  become: true
+  command: >
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'google-chrome-stable'
+
+#vs code
+- name: Create custom shortcut to launch Visual Studio Code
+  become: true
+  command: >
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
+
+- name: Set custom shortcut key and command
+  become: true
+  command: >
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Launch Visual Studio Code'
+
+- name: Set custom shortcut key binding
+  become: true
+  command: >
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Super>period'
+
+- name: Set custom shortcut command
+  become: true
+  command: >
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'code'
+
+#docker
+- name: Create custom shortcut to launch Docker Desktop
+  become: true
+  command: >
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
+
+- name: Set custom shortcut key and command
+  become: true
+  command: >
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Launch Docker Desktop'
+
+- name: Set custom shortcut key binding
+  become: true
+  command: >
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Super>d'
+
+- name: Set custom shortcut command
+  become: true
+  command: >
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'docker-desktop'
+
+#slack
+- name: Create custom shortcut to launch Slack
+  become: true
+  command: >
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/']"
+
+- name: Set custom shortcut key and command
+  become: true
+  command: >
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name 'Launch Slack'
+
+- name: Set custom shortcut key binding
+  become: true
+  command: >
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding '<Super>s'
+
+- name: Set custom shortcut command
+  become: true
+  command: >
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command 'slack'

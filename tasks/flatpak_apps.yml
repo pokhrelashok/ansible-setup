@@ -1,0 +1,13 @@
+- name: Install applications
+  community.general.flatpak:
+    name:
+      - com.google.Chrome
+      - com.slack.Slack
+      - com.visualstudio.code
+      - io.dbeaver.DBeaverCommunity
+      - org.videolan.VLC
+      - us.zoom.Zoom
+      - com.getpostman.Postman
+      - org.qbittorrent.qBittorrent
+      - com.sublimetext.three
+      - org.telegram.desktop

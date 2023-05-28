@@ -1,0 +1,8 @@
+- name: Switch Left CTRL and ALT
+  become: true
+  command: >
+    gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:swap_lalt_lctl']"
+- name: Switch Right CTRL and ALT
+  become: true
+  command: >
+    gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:ralt_rctl']"
