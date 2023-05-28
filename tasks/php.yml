@@ -44,3 +44,7 @@
 - name: Download Composer installer
   become: true
   shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+  tags:
+    - install
+    - php
+    - composer
