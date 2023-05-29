@@ -6,27 +6,32 @@
   tags:
     - gnome
 
-# - name: Install GNOME Extensions
-#   become: true
-#   package:
-#     name: gnome-shell-extension-prefs
-#     state: present
-#   tags:
-#     - gnome
+- name: Enable required GNOME Shell extensions
+  become: true
+  command: gnome-extensions install -f "{{ item }}"
+  loop:
+    - appindicatorsupport@rgcjonas.gmail.com
+    - hidetopbar@mathieu.bidon.ca
+    - bluetooth-battery@michalw.github.com
+    - nepali-date@biplab
+    - clipboard-history@alexsaveau.dev
+    - no-overview@fthx
+    - dash-to-dock@micxgx.gmail.com
+    - notification-banner-reloaded@marcinjakubowski.github.com
+    - gestureImprovements@gestures
+    - user-theme@gnome-shell-extensions.gcampax.github.com
+    - grand-theft-focus@zalckos.github.com
+    - ddterm@amezin.github.com
+  tags:
+    - gnome-extensions
 
-- name: Install pipx
+- name: Restart gnome-shell
   become: true
   package:
-    name: python3-pip
+    name: gnome-tweaks
     state: present
   tags:
-    - gnome-extensions
-
-- name: Install gnome-extensions-cli
-  become: true
-  shell: pipx gnome-extensions-cli
-  tags:
-    - gnome-extensions
+    - gnome
 
 - name: Enable required GNOME Shell extensions
   become: true
@@ -43,5 +48,6 @@
     - gestureImprovements@gestures
     - user-theme@gnome-shell-extensions.gcampax.github.com
     - grand-theft-focus@zalckos.github.com
+    - ddterm@amezin.github.com
   tags:
     - gnome-extensions
